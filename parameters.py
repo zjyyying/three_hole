@@ -2,7 +2,7 @@ import math
 import numpy as np
 M_PI = math.pi
 
-Mc = 6
+Mc = 10
 
 # Note that Ni-d and O-p orbitals use hole language
 # while Nd orbs use electron language
@@ -18,20 +18,13 @@ ed = {'d3z2r2': 1.97,\
       'dxz'   : 1.6,\
       'dyz'   : 1.6}
 
-# after adding H
-ed = {'d3z2r2': 3.3,\
-      'dx2y2' : 0.0,\
-      'dxy'   : 1.55,\
-      'dxz'   : 1.9,\
-      'dyz'   : 1.9}
 
 eps = np.arange(4.7, 4.71, 1.0)
-eH  = 4.8 
 
 As = np.arange(6.0, 6.01, 2.0)
 B = 0.15
 C = 0.58
-#As = np.arange(100, 100.1, 1.0)
+# As = np.arange(100, 100.1, 1.0)
 # As = np.arange(0.0, 0.01, 1.0)
 # B = 0
 # C = 0
@@ -44,14 +37,11 @@ C = 0.58
 #            hopping signs are considered in dispersion separately
 Norb = 8
 if Norb==4 or Norb==8:
-    #tpds = [0.00001]  # for check_CuO4_eigenvalues.py
+    #tpds = [0.00001]  # for check_CuO4_eigenvalues.py 考虑极限情况
     tpds = np.linspace(1.3, 1.3, num=1, endpoint=True) #[0.25]
-#     tpds = [0.000]
+#     tpds = [0.000] 
     tpps = [0.5]
-    #tNiH = 1.63
-    tNiHs = np.linspace(4, 4.1, num=1, endpoint=True)
-#     tNiHs = [0.000]
-    tpH  = 0.58
+    
 elif Norb==10 or Norb==12:    
     # pdp = sqrt(3)/4*pds so that tpd(b2)=tpd(b1)/2: see Eskes's thesis and 1990 paper
     # the values of pds and pdp between papers have factor of 2 difference
@@ -62,11 +52,6 @@ elif Norb==10 or Norb==12:
     pdps = np.asarray(pdss)*np.sqrt(3)/4.
     #pdss = [0.01]
     #pdps = [0.01]
-    tNiH = 1.13
-    tpH  = 0.58
-    #tNiH = 0.01
-    tHH = 0.23
-    tHH_p = 0.44  # hopping between two planes
     #------------------------------------------------------------------------------
     # note that tpp ~ (pps+ppp)/2
     # because 3 or 7 orbital bandwidth is 8*tpp while 9 orbital has 4*(pps+ppp)
@@ -103,7 +88,6 @@ if if_get_ground_state==1:
 
 Ni_orbs = ['dx2y2','dxy','dxz','dyz','d3z2r2']
 #Ni_orbs = ['dx2y2','d3z2r2']
-H_orbs = ['H']
     
 if Norb==4 or Norb==8:
     O1_orbs  = ['px']
@@ -126,8 +110,8 @@ O_orbs.sort()
 print ("Ni_orbs = ", Ni_orbs)
 print ("O1_orbs = ",  O1_orbs)
 print ("O2_orbs = ",  O2_orbs)
-print ("H_orbs = ",  H_orbs)
-orbs = Ni_orbs + O_orbs + H_orbs
+
+orbs = Ni_orbs + O_orbs 
 #assert(len(orbs)==Norb)
 
 Upps = [0]

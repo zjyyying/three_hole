@@ -266,7 +266,7 @@ class VariationalSpace:
         Mc = self.Mc
         lookup_tbl = []
 
-        # two_hole: hole can only be on Ni or O or H
+        # two_hole: hole can only be on Ni or O 
         # hole1:
         for vx in range(-Mc,Mc+1):
             Bv = Mc - abs(vx)
@@ -307,7 +307,7 @@ class VariationalSpace:
                                                                     if orb1 in pam.Ni_orbs and \
                                                                         orb2 in pam.Ni_orbs and \
                                                                         orb3 in pam.Ni_orbs and \
-                                                                        ux==vx==wx==0 or ux==vx==wx==2:
+                                                                        ux==vx==wx==0 or ux==vx==wx==2: #ux uy uz vx vyvz wxwywz是跳跃后的空穴的轨道 对应坐标
                                                                         continue
                                                                         
                                                                     # At most, there are only 2 holes in H
@@ -452,7 +452,7 @@ class VariationalSpace:
                (ts1,torb1,tx1,ty1,tz1,ts2,torb2,tx2,ty2,tz2,ts3,torb3,tx3,ty3,tz3))
 
         return uid
-
+#--------------------------------------------
     def get_state(self,uid):
         '''
         Given a unique identifier, return the corresponding state. 

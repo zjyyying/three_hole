@@ -38,11 +38,7 @@ def reorder_z(slabel):
         if z2>z1:
             state_label = [s2,orb2,x2,y2,z2,s1,orb1,x1,y1,z1]
             
-    elif orb1 in pam.H_orbs and orb2 in pam.Ni_orbs:
-        state_label = [s2,orb2,x2,y2,z2,s1,orb1,x1,y1,z1]  
         
-    elif orb1 in pam.O_orbs and orb2 in pam.H_orbs:
-        state_label = [s2,orb2,x2,y2,z2,s1,orb1,x1,y1,z1]           
             
     return state_label
                 
@@ -131,8 +127,6 @@ def get_ground_state(matrix, VS, S_val,Sz_val):
         wgt_d9Ld9 = np.zeros(20)  
         wgt_d8d9 = np.zeros(20) 
         wgt_d9d9L = np.zeros(20)         
-        wgt_d9d9H = np.zeros(20)           
-        wgt_d9H2 = np.zeros(20)   
         wgt_d9L2 = np.zeros(20)          
         total = 0
         total2 = 0
@@ -233,34 +227,19 @@ def get_ground_state(matrix, VS, S_val,Sz_val):
                     if orb1=='d3z2r2' and  orb2=='d3z2r2':
                         wgt_d9d9L[4] += weight   
  
-                if orb1 in pam.Ni_orbs and orb2 in pam.Ni_orbs and orb3 in pam.H_orbs and x1==0 and x2==2:
-                    wgt_d9d9H[0] += weight                            
-                    if orb1=='dx2y2' and  orb2=='dx2y2':
-                        wgt_d9d9H[1] += weight
-                    if orb1=='d3z2r2' and  orb2=='dx2y2':
-                        wgt_d9d9H[2] += weight
-                    if orb1=='dx2y2' and  orb2=='d3z2r2':
-                        wgt_d9d9H[3] += weight
-                    if orb1=='d3z2r2' and  orb2=='d3z2r2':
-                        wgt_d9d9H[4] += weight   
-                                                                                                       
-                if orb1 in pam.Ni_orbs and orb2 in pam.H_orbs and orb3 in pam.H_orbs :
-                    wgt_d9H2[0] += weight        
-                    
+                                 
                 if orb1 in pam.Ni_orbs and orb2 in pam.O_orbs and orb3 in pam.O_orbs :
                     wgt_d9L2[0] += weight                            
-                    
-                                                                                                     
+                                  
+                                                                                                    
         print('printed states total weight =', total)
         
         print('wgt_d9d8 = ',wgt_d9d8[0])
         print('wgt_d8d9= ',wgt_d8d9[0])
         print('wgt_d9Ld9 = ',wgt_d9Ld9[0])
         print('wgt_d9d9L = ',wgt_d9d9L[0])
-        print('wgt_d9d9H = ',wgt_d9d9H[0])
-        print('wgt_d9H2 = ',wgt_d9H2[0])
         print('wgt_d9L2 = ',wgt_d9L2[0])
-        print('total weight = ', wgt_d9d8[0]+ wgt_d8d9[0]+wgt_d9Ld9[0]+ wgt_d9d9L[0]+ wgt_d9d9H[0]+wgt_d9H2[0]+wgt_d9L2[0])
+        print('total weight = ', wgt_d9d8[0]+ wgt_d8d9[0]+wgt_d9Ld9[0]+ wgt_d9d9L[0]+ wgt_d9L2[0])
         print('total2 = ',total2)  
         
         
@@ -352,28 +331,7 @@ def get_ground_state(matrix, VS, S_val,Sz_val):
         txt.close()          
         
         
-        
-        txt=open('./data/wgt_d9d9H','a')                                  
-        txt.write(str(wgt_d9d9H[0])+'\n')
-        txt.close()   
-        txt=open('./data/wgt_d9d9H_b1b1','a')                                  
-        txt.write(str(wgt_d9d9H[1])+'\n')
-        txt.close()           
-        txt=open('./data/wgt_d9d9H_a1b1','a')                                  
-        txt.write(str(wgt_d9d9H[2])+'\n')
-        txt.close()      
-        txt=open('./data/wgt_d9d9H_b1a1','a')                                  
-        txt.write(str(wgt_d9d9H[3])+'\n')
-        txt.close()              
-        txt=open('./data/wgt_d9d9H_a1a1','a')                                  
-        txt.write(str(wgt_d9d9H[4])+'\n')
-        txt.close()
-        
-        
-        
-        txt=open('./data/wgt_d9H2','a')                                  
-        txt.write(str(wgt_d9H2[0])+'\n')
-        txt.close()           
+       
         txt=open('./data/wgt_d9L2','a')                                  
         txt.write(str(wgt_d9L2[0])+'\n')
         txt.close()           

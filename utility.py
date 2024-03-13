@@ -66,6 +66,7 @@ def get_statistic_2orb(o1,o2):
     '''
     Get how many orbs are on Ni, O separately
     and write info into dorbs and porbs
+    在Ni上有多少轨道
     '''  
     nNi = 0; nO = 0; dorbs=[]; porbs=[]
     if o1 in pam.Ni_orbs:
@@ -87,37 +88,33 @@ def get_statistic_3orb(o1,o2,o3,x1,x2,x3):
     Get how many orbs are on Ni, O, H separately
     and write info into dorbs and porbs
     '''  
-    nNi = 0; nO = 0; nH = 0
+    nNi = 0; nO = 0; 
     dorbs=[]; dxs = []   # dxs stores x coordinate of d orb for the case of 2 Ni
-    porbs=[]; Horbs=[]
+    porbs=[]
     
     if o1 in pam.Ni_orbs:
         nNi += 1; dorbs.append(o1); dxs.append(x1)
     elif o1 in pam.O_orbs:
         nO += 1; porbs.append(o1)
-    elif o1 in pam.H_orbs:
-        nH += 1; Horbs.append(o1)
+
         
     if o2 in pam.Ni_orbs:
         nNi += 1; dorbs.append(o2); dxs.append(x2)
     elif o2 in pam.O_orbs:
         nO += 1; porbs.append(o2)
-    elif o2 in pam.H_orbs:
-        nH += 1; Horbs.append(o2)
+
         
     if o3 in pam.Ni_orbs:
         nNi += 1; dorbs.append(o3); dxs.append(x3)
     elif o3 in pam.O_orbs:
         nO += 1; porbs.append(o3)
-    elif o3 in pam.H_orbs:
-        nH += 1; Horbs.append(o3)
+
         
     assert(nNi==len(dorbs))
     assert(nO ==len(porbs))
-    assert(nH ==len(Horbs))
-    assert(nNi+nO+nH==3)
+    assert(nNi+nO==3)
     
-    return nNi, nO, nH, dorbs, dxs, porbs, Horbs
+    return nNi, nO, dorbs, dxs, porbs
 
 def oppo_spin(s1):
     if s1=='up':
