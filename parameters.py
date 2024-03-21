@@ -2,24 +2,24 @@ import math
 import numpy as np
 M_PI = math.pi
 
-Mc = 10
+Mc = 4
 
 # Note that Ni-d and O-p orbitals use hole language
 # while Nd orbs use electron language
-# ed = {'d3z2r2': 0.0,\
-#       'dx2y2' : 0.0,\
-#       'dxy'   : 0.0,\
-#       'dxz'   : 0.0,\
-#       'dyz'   : 0.0}
+ed = {'d3z2r2': 0.0,\
+       'dx2y2' : 0.0,\
+      'dxy'   : 0.0,\
+      'dxz'   : 0.0,\
+       'dyz'   : 0.0}
 
-ed = {'d3z2r2': 1.97,\
-      'dx2y2' : 0.0,\
-      'dxy'   : 1.53,\
-      'dxz'   : 1.6,\
-      'dyz'   : 1.6}
+#ed = {'d3z2r2': 1.97,\
+#      'dx2y2' : 0.0,\
+#      'dxy'   : 1.53,\
+#     'dxz'   : 1.6,\
+#    'dyz'   : 1.6}
 
 
-eps = np.arange(4.7, 4.71, 1.0)
+eps = np.arange(3.0, 3.01, 1.0)
 
 As = np.arange(6.0, 6.01, 2.0)
 B = 0.15
@@ -35,14 +35,14 @@ C = 0.58
 
 # IMPORTANT: keep all hoppings below positive to avoid confusion
 #            hopping signs are considered in dispersion separately
-Norb = 8
-if Norb==4 or Norb==8:
+Norb = 7
+if Norb==3 or Norb==7:
     #tpds = [0.00001]  # for check_CuO4_eigenvalues.py 考虑极限情况
     tpds = np.linspace(1.3, 1.3, num=1, endpoint=True) #[0.25]
 #     tpds = [0.000] 
     tpps = [0.5]
     
-elif Norb==10 or Norb==12:    
+elif Norb==9 or Norb==11:    
     # pdp = sqrt(3)/4*pds so that tpd(b2)=tpd(b1)/2: see Eskes's thesis and 1990 paper
     # the values of pds and pdp between papers have factor of 2 difference
     # here use Eskes's thesis Page 4
@@ -89,16 +89,16 @@ if if_get_ground_state==1:
 Ni_orbs = ['dx2y2','dxy','dxz','dyz','d3z2r2']
 #Ni_orbs = ['dx2y2','d3z2r2']
     
-if Norb==4 or Norb==8:
+if Norb==3 or Norb==7:
     O1_orbs  = ['px']
     O2_orbs  = ['py']
+elif Norb==9:
+    O1_orbs  = ['px1','py1']
+    O2_orbs  = ['px2','py2']
 elif Norb==10:
     O1_orbs  = ['px1','py1']
     O2_orbs  = ['px2','py2']
 elif Norb==11:
-    O1_orbs  = ['px1','py1']
-    O2_orbs  = ['px2','py2']
-elif Norb==12:
     O1_orbs  = ['px1','py1','pz1']
     O2_orbs  = ['px2','py2','pz2']
 O_orbs = O1_orbs + O2_orbs

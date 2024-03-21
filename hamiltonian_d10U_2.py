@@ -43,12 +43,12 @@ tpp_nn_hop_dir = ['UR','UL','DL','DR']
 
 def set_tpd_tpp(Norb,tpd,tpp,pds,pdp,pps,ppp):
     # dxz and dyz has no tpd hopping
-    if pam.Norb==8:
+    if pam.Norb==4:
         tpd_nn_hop_dir = {'d3z2r2': ['L','R','U','D'],\
                           'dx2y2' : ['L','R','U','D'],\
                           'px'    : ['L','R'],\
                           'py'    : ['U','D']}
-    elif pam.Norb==10 or pam.Norb==11:
+    elif pam.Norb==7 or pam.Norb==9:
         tpd_nn_hop_dir = {'d3z2r2': ['L','R','U','D'],\
                           'dx2y2' : ['L','R','U','D'],\
                           'dxy'   : ['L','R','U','D'],\
@@ -56,7 +56,7 @@ def set_tpd_tpp(Norb,tpd,tpp,pds,pdp,pps,ppp):
                           'py1'   : ['L','R'],\
                           'px2'   : ['U','D'],\
                           'py2'   : ['U','D']}
-    elif pam.Norb==12:
+    elif pam.Norb==11:
         tpd_nn_hop_dir = {'d3z2r2': ['L','R','U','D'],\
                           'dx2y2' : ['L','R','U','D'],\
                           'dxy'   : ['L','R','U','D'],\
@@ -70,11 +70,11 @@ def set_tpd_tpp(Norb,tpd,tpp,pds,pdp,pps,ppp):
                           'pz2'   : ['U','D']}
 
         
-    if pam.Norb==8:
+    if pam.Norb==4:
         tpd_orbs = {'d3z2r2','dx2y2','px','py'}
-    elif pam.Norb==10:
+    elif pam.Norb==7:
         tpd_orbs = {'d3z2r2','dx2y2','dxy','px1','py1','px2','py2'}
-    elif pam.Norb==12:
+    elif pam.Norb==11:
         tpd_orbs = {'d3z2r2','dx2y2','dxy','dxz','dyz','px1','py1','pz1','px2','py2','pz2'}
         
         
@@ -84,7 +84,7 @@ def set_tpd_tpp(Norb,tpd,tpp,pds,pdp,pps,ppp):
     # dx2-y2 hoping to the O px in the positive x direction should be positive for holes and for O in the minus x
     # directions should be negative for holes, i.e. the hoping integral should be minus sign of overlap integral
     # between two neighboring atoms. 
-    if pam.Norb==8:
+    if pam.Norb==4:
         # d3z2r2 has +,-,+ sign structure so that it is negative in x-y plane
         tpd_nn_hop_fac = {('d3z2r2','L','px'): -tpd/np.sqrt(3),\
                           ('d3z2r2','R','px'):  tpd/np.sqrt(3),\
@@ -103,7 +103,7 @@ def set_tpd_tpp(Norb,tpd,tpp,pds,pdp,pps,ppp):
                           ('px','L','dx2y2'):  -tpd,\
                           ('py','D','dx2y2'):   tpd,\
                           ('py','U','dx2y2'):  -tpd}
-    elif pam.Norb==10:
+    elif pam.Norb==7:
         c = np.sqrt(3)/2.0
         tpd_nn_hop_fac = {('d3z2r2','L','px1'): -pds/2.0,\
                           ('d3z2r2','R','px1'):  pds/2.0,\
@@ -130,7 +130,7 @@ def set_tpd_tpp(Norb,tpd,tpp,pds,pdp,pps,ppp):
                           ('py1','L','dxy'):   pdp,\
                           ('px2','D','dxy'):   pdp,\
                           ('px2','U','dxy'):  -pdp}
-    elif pam.Norb==12:
+    elif pam.Norb==11:
         c = np.sqrt(3)/2.0
         tpd_nn_hop_fac = {('d3z2r2','L','px1'): -pds/2.0,\
                           ('d3z2r2','R','px1'):  pds/2.0,\
@@ -166,12 +166,12 @@ def set_tpd_tpp(Norb,tpd,tpp,pds,pdp,pps,ppp):
                           ('pz2','D','dyz'):   pdp,\
                           ('pz2','U','dyz'):  -pdp}
     ########################## tpp below ##############################
-    if pam.Norb==8:
+    if pam.Norb==4:
         tpp_nn_hop_fac = {('UR','px','py'): -tpp,\
                           ('UL','px','py'):  tpp,\
                           ('DL','px','py'): -tpp,\
                           ('DR','px','py'):  tpp}
-    elif pam.Norb==10:
+    elif pam.Norb==7:
         tpp_nn_hop_fac = {('UR','px1','px2'):  0.5*(ppp-pps),\
                           ('UL','px1','px2'):  0.5*(ppp-pps),\
                           ('DL','px1','px2'):  0.5*(ppp-pps),\
@@ -188,7 +188,7 @@ def set_tpd_tpp(Norb,tpd,tpp,pds,pdp,pps,ppp):
                           ('UL','px2','py1'):  0.5*(ppp+pps),\
                           ('DL','px2','py1'): -0.5*(ppp+pps),\
                           ('DR','px2','py1'):  0.5*(ppp+pps)}
-    elif pam.Norb==12:
+    elif pam.Norb==11:
         tpp_nn_hop_fac = {('UR','px1','px2'):  0.5*(ppp-pps),\
                           ('UL','px1','px2'):  0.5*(ppp-pps),\
                           ('DL','px1','px2'):  0.5*(ppp-pps),\

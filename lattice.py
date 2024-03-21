@@ -5,14 +5,14 @@ Keep using NiO2 type lattice but now there is only (0,0) Ni-site
 import parameters as pam
 
 # below used for get_uid and get_state in VS
-if pam.Norb==4:
+if pam.Norb==3:
     orb_int = {'dx2y2': 0,\
                'px':    1,\
                'py':    2} 
     int_orb = {0: 'dx2y2',\
                1: 'px',\
                2: 'py'}
-elif pam.Norb==8:
+elif pam.Norb==7:
     orb_int = {'d3z2r2': 0,\
                'dx2y2':  1,\
                'dxy':    2,\
@@ -29,7 +29,7 @@ elif pam.Norb==8:
                5: 'px',\
                6: 'py'}
              
-elif pam.Norb==10:
+elif pam.Norb==9:
     orb_int = {'d3z2r2': 0,\
                'dx2y2':  1,\
                'dxy':    2,\
@@ -38,8 +38,7 @@ elif pam.Norb==10:
                'px1':    5,\
                'py1':    6,\
                'px2':    7,\
-               'py2':    8,\
-               'Os':     9} 
+               'py2':    8} 
     int_orb = {0: 'd3z2r2',\
                1: 'dx2y2',\
                2: 'dxy',\
@@ -50,7 +49,7 @@ elif pam.Norb==10:
                7: 'px2',\
                8: 'py2'}
 # apz means apical oxygen pz locating above Cu atom:
-elif pam.Norb==11:
+elif pam.Norb==10:
     orb_int = {'d3z2r2': 0,\
                'dx2y2':  1,\
                'dxy':    2,\
@@ -72,7 +71,7 @@ elif pam.Norb==11:
                7: 'py1',\
                8: 'px2',\
                9: 'py2'} 
-elif pam.Norb==12:
+elif pam.Norb==11: 
     orb_int = {'d3z2r2': 0,\
                'dx2y2':  1,\
                'dxy':    2,\

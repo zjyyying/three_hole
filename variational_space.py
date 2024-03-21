@@ -159,8 +159,8 @@ def check_in_vs_condition(x1,y1,x2,y2):
     Restrictions: the distance between one hole and Ni-site (0,0)
     and two-hole distance less than cutoff Mc
     '''     
-    if calc_manhattan_dist(x1,y1,0,0) > pam.Mc or \
-        calc_manhattan_dist(x2,y2,0,0) > pam.Mc or \
+    if calc_manhattan_dist(x1,y1,1,0) > pam.Mc or \
+        calc_manhattan_dist(x2,y2,1,0) > pam.Mc or \
         calc_manhattan_dist(x1,y1,x2,y2) > 2*pam.Mc:
         return False
     else:
@@ -172,9 +172,9 @@ def check_in_vs_condition1(x1,y1,x2,y2,x3,y3):
     and two-hole distance less than cutoff Mc
     Below use the middle of two Ni is at (1,0)
     '''     
-    if calc_manhattan_dist(x1,y1,0,0) > pam.Mc or \
-        calc_manhattan_dist(x2,y2,0,0) > pam.Mc or \
-        calc_manhattan_dist(x3,y3,0,0) > pam.Mc or \
+    if calc_manhattan_dist(x1,y1,1,0) > pam.Mc or \
+        calc_manhattan_dist(x2,y2,1,0) > pam.Mc or \
+        calc_manhattan_dist(x3,y3,1,0) > pam.Mc or \
         calc_manhattan_dist(x1,y1,x2,y2) > 2*pam.Mc or \
         calc_manhattan_dist(x1,y1,x3,y3) > 2*pam.Mc or \
         calc_manhattan_dist(x2,y2,x3,y3) > 2*pam.Mc:
@@ -268,28 +268,28 @@ class VariationalSpace:
 
         # two_hole: hole can only be on Ni or O 
         # hole1:
-        for vx in range(-Mc,Mc+1):
+        for vx in range(-Mc+1,Mc):
             Bv = Mc - abs(vx)
             for vy in range(-Bv,Bv+1):
-                for vz in [-1,0,1]:
+                for vz in [0]:
                     orb1s = lat.get_unit_cell_rep(vx,vy,vz)
                     if orb1s==['NotOnSublattice']:
                         continue
 
                     # hole2:
-                    for wx in range(-Mc,Mc+1):
+                    for wx in range(-Mc+1,Mc):
                         Bw = Mc - abs(wx)
                         for wy in range(-Bw,Bw+1):
-                            for wz in [-1,0,1]:
+                            for wz in [0]:
                                 orb2s = lat.get_unit_cell_rep(wx,wy,wz)
                                 if orb2s==['NotOnSublattice']:
                                     continue
                                     
                                 # hole3:
-                                for ux in range(-Mc,Mc+1):
+                                for ux in range(-Mc+1,Mc):
                                     Bt = Mc - abs(ux)
                                     for uy in range(-Bt,Bt+1):
-                                        for uz in [-1,0,1]:
+                                        for uz in [0]:
                                             orb3s = lat.get_unit_cell_rep(ux,uy,uz)
                                             if orb3s==['NotOnSublattice']:
                                                 continue
